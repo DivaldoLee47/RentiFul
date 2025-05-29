@@ -176,7 +176,7 @@ export const removeFavoriteProperty = async (
       },
       include: { favorites: true },
     })
-
+    console.log(`Updated tenant after removing favorite:`, updatedTenant)
     res.json(updatedTenant)
   } catch (err: any) {
     res
