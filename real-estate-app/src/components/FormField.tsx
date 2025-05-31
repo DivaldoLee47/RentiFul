@@ -121,7 +121,7 @@ export const CustomFormField: React.FC<FormFieldProps> = ({
               checked={field.value}
               onCheckedChange={field.onChange}
               id={name}
-              className={`text-customgreys-dirtyGrey ${inputClassName}`}
+              className={`bg-gray-300 data-[state=checked]:bg-gray-600 text-white transition-colors ${inputClassName}`}
             />
             <FormLabel htmlFor={name} className={labelClassName}>
               {label}
