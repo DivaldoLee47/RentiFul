@@ -32,6 +32,10 @@ const PropertyTenants = () => {
   const { data: payments, isLoading: paymentsLoading } =
     useGetPaymentsQuery(propertyId)
 
+  console.log(payments, 'payments')
+  console.log(leases, 'leases')
+  console.log(property, 'property')
+
   if (propertyLoading || leasesLoading || paymentsLoading) return <Loading />
 
   const getCurrentMonthPaymentStatus = (leaseId: number) => {

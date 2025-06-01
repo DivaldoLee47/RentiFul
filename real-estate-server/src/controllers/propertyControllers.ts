@@ -285,3 +285,41 @@ export const createProperty = async (
     res.status(500).json({ message: `Error creating property: ${err.message}` })
   }
 }
+
+export const getPropertyLeases = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    const { id } = req.params
+
+    // Step 1: Get all leases for the given propertyId
+    const leases = await prisma.lease.findMany({
+      where: { propertyId: Number(id) },
+    })
+
+    // Step 2: Extract tenantCognitoIds from the leases
+    const tenantCognitoIds = leases.map((lease) => lease.tenantCognitoId)
+
+    // Step 3: Get tenants based on tenantCognitoId
+    const tenants = await prisma.tenant.findMany({
+      where: {
+        cognitoId: {
+          in: tenantCognitoIds,
+        },
+      },
+    })
+
+    // Step 4: Join tenants into leases manually
+    const leasesWithTenants = leases.map((lease) => ({
+      ...lease,
+      tenant: tenants.find((t) => t.cognitoId === lease.tenantCognitoId),
+    }))
+
+    res.json(leasesWithTenants)
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ message: `Error retrieving leases: ${error.message}` })
+  }
+}

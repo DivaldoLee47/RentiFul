@@ -240,10 +240,13 @@ const Residence = () => {
     { skip: !authUser?.cognitoInfo?.userId },
   )
 
+  console.log(leases, 'leases')
+
   const { data: payments, isLoading: paymentsLoading } = useGetPaymentsQuery(
-    leases?.[0]?.id || 0,
-    { skip: !leases?.[0]?.id },
+    Number(id),
   )
+
+  console.log(payments, 'payments')
 
   if (propertyLoading || leasesLoading || paymentsLoading) return <Loading />
   if (!property || propertyError) return <div>Error loading property</div>

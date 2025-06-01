@@ -23,18 +23,18 @@ const Listings = () => {
   const [removeFavorite] = useRemoveFavoritePropertyMutation()
   const viewMode = useAppSelector((state) => state.global.viewMode)
   const filters = useAppSelector((state) => state.global.filters)
+
   const {
     data: properties,
     isLoading,
     isError,
   } = useGetPropertiesQuery(filters)
 
-  // Add this console log
-  console.log('Returned properties:', properties)
+  console.log('Properties fetched:', properties)
 
   const handleFavoriteToggle = async (propertyId: number) => {
     if (!authUser) return
-    console.log(tenant, 'tenants data in Listings')
+
     const isFavorite = tenant?.favorites?.some(
       (fav: Property) => fav.id === propertyId,
     )

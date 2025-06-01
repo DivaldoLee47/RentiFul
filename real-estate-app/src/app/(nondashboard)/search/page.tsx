@@ -5,12 +5,11 @@ import { useAppDispatch, useAppSelector } from '@/state/redux'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 import FiltersBar from './FiltersBar'
+import FiltersFull from './FiltersFull'
 import { cleanParams } from '@/lib/utils'
 import { setFilters } from '@/state'
-import FiltersFull from './FiltersFull'
 import Map from './Map'
 import Listings from './Listings'
-// import Listings from './Listings'
 
 const SearchPage = () => {
   const searchParams = useSearchParams()

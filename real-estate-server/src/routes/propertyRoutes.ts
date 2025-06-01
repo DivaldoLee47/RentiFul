@@ -3,6 +3,7 @@ import {
   getProperties,
   getProperty,
   createProperty,
+  getPropertyLeases,
 } from '../controllers/propertyControllers'
 import { authMiddleware } from '../middleware/authMiddleware'
 import multer from 'multer'
@@ -20,5 +21,6 @@ router.post(
   upload.array('photos'),
   createProperty,
 )
+router.get('/:id/leases', authMiddleware(['manager']), getPropertyLeases)
 
 export default router

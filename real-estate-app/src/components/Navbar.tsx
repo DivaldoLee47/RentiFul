@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full py-3 px-8 bg-primary-700 text-white">
         <div className="flex items-center gap-4 md:gap-6">
           {isDashboardPage && (
-            <div className="md-hidden">
+            <div className="md:hidden">
               <SidebarTrigger />
             </div>
           )}
@@ -118,7 +118,7 @@ const Navbar = () => {
                       {authUser.userRole?.[0].toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
-                  <p className="text-primary-200 hidden md-block">
+                  <p className="text-primary-200 hidden md:block">
                     {authUser.userInfo?.name}
                   </p>
                 </DropdownMenuTrigger>
@@ -152,25 +152,25 @@ const Navbar = () => {
                     className="cursor-pointer hover:!bg-primary-700 hover:!text-primary-100"
                     onClick={handleSignOut}
                   >
-                    Sign Out
+                    Sign out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
           ) : (
             <>
-              <Link href="/signin" className="">
+              <Link href="/signin">
                 <Button
                   variant="outline"
-                  className="text-white border-white bg-transparant hover:bg-white hover:text-primary-700 rounded-lg"
+                  className="text-white border-white bg-transparent hover:bg-white hover:text-primary-700 rounded-lg"
                 >
                   Sign In
                 </Button>
               </Link>
-              <Link href="/signup" className="">
+              <Link href="/signup">
                 <Button
                   variant="secondary"
-                  className="text-white bg-secondary-600 hover:bg-white hover:text-primary-700 rounded-lg "
+                  className="text-white bg-secondary-600 hover:bg-white hover:text-primary-700 rounded-lg"
                 >
                   Sign Up
                 </Button>
